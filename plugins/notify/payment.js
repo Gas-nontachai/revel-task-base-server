@@ -17,7 +17,7 @@ const paymentPaid = async (connection, data) => {
     notifys: [{
       notify_title: `ใบ ${invoice_supplier.invoice_supplier_origin_id} มีการชำระแล้ว`,
       notify_detail: `เมื่อ ${formatDate(new Date(), 'HH:mm dd/MM/yyyy')} - ${invoice_supplier.invoice_supplier_branch_name}`,
-      notify_url: `${process.env.TT_CLIENT_URL}/invoice-supplier/detail?id=${invoice_supplier.invoice_supplier_id}`,
+      notify_url: `${process.env.WEB_CLIENT_URL}/invoice-supplier/detail?id=${invoice_supplier.invoice_supplier_id}`,
       notify_lv: 'success',
     }],
     target: {
@@ -40,7 +40,7 @@ const paymentInvalid = async (connection, data) => {
     notifys: [{
       notify_title: `ใบ ${invoice_supplier.invoice_supplier_origin_id} ยอดชำระไม่ถูกต้อง`,
       notify_detail: `เมื่อ ${formatDate(new Date(), 'HH:mm dd/MM/yyyy')} - ${invoice_supplier.invoice_supplier_branch_name}`,
-      notify_url: `${process.env.TT_CLIENT_URL}/invoice-supplier/detail?id=${invoice_supplier.invoice_supplier_id}`,
+      notify_url: `${process.env.WEB_CLIENT_URL}/invoice-supplier/detail?id=${invoice_supplier.invoice_supplier_id}`,
       notify_lv: 'error',
     }],
     target: {

@@ -1,7 +1,7 @@
 {
-  "name": "ttcenter-base-server",
+  "name": "revel-task-base-server",
   "version": "1.0.0",
-  "description": "ttcenter-base-server",
+  "description": "revel-task-base-server",
   "main": "index.js",
   "scripts": {
     "prod": "set NODE_ENV=production&& nodemon",

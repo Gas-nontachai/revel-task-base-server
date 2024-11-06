@@ -24,16 +24,15 @@ Task.getUserBy = (connection, data = {}) => new Promise((resolve, reject) => {
 
   const core_query = `SELECT user_id,
     license_id,
-    user_prefix,
     user_firstname,
     user_lastname,
-    user_img,
     user_email,
-    user_tel,
+    user_phone,
     user_username,
     user_address,
+    user_img,
     user_status,
-    CONCAT(user_prefix, ' ', user_firstname, ' ', user_lastname) AS user_fullname,
+    CONCAT(user_firstname, ' ', user_lastname) AS user_fullname,
     IFNULL((
       SELECT license_name
       FROM tb_license 
@@ -63,16 +62,15 @@ Task.getUserBy = (connection, data = {}) => new Promise((resolve, reject) => {
 Task.getUserByID = (connection, data = {}) => new Promise((resolve, reject) => {
   let sql = `SELECT user_id,
     license_id,
-    user_prefix,
     user_firstname,
     user_lastname,
-    user_img,
     user_email,
-    user_tel,
+    user_phone,
     user_username,
     user_address,
+    user_img,
     user_status,
-    CONCAT(user_prefix, ' ', user_firstname, ' ', user_lastname) AS user_fullname,
+    CONCAT(user_firstname, ' ', user_lastname) AS user_fullname,
     IFNULL((
       SELECT license_name
       FROM tb_license 
@@ -114,8 +112,8 @@ Task.checkLogin = (connection, data = {}) => new Promise((resolve, reject) => {
     license_id,
     user_firstname,
     user_lastname,
-    user_img,
-    user_username
+    user_username,
+    user_img
     FROM tb_user
     WHERE user_status = 'active'
     ${condition}`
@@ -132,31 +130,29 @@ Task.insertUser = (connection, data = {}) => new Promise((resolve, reject) => {
   let sql = `INSERT INTO tb_user (
     user_id,
     license_id,
-    user_prefix,
     user_firstname,
     user_lastname,
-    user_img,
-    user_tel,
+    user_phone,
     user_email,
     user_username,
     user_password,
     user_address,
     user_status,
+    user_img,
     addby,
     adddate
   ) VALUES (
     ${connection.escape(data.user_id)},
     ${connection.escape(data.license_id)},
-    ${connection.escape(data.user_prefix)},
     ${connection.escape(data.user_firstname)},
     ${connection.escape(data.user_lastname)},
-    ${connection.escape(data.user_img)},
-    ${connection.escape(data.user_tel)},
+    ${connection.escape(data.user_phone)},
     ${connection.escape(data.user_email)},
     ${connection.escape(data.user_username)},
     ${connection.escape(data.user_password)},
     ${connection.escape(data.user_address)},
     ${connection.escape(data.user_status)},
+    ${connection.escape(data.user_img)},
     ${connection.escape(connection.session._id)},
     NOW()
   )`
@@ -167,11 +163,10 @@ Task.insertUser = (connection, data = {}) => new Promise((resolve, reject) => {
 Task.updateUserBy = (connection, data = {}) => new Promise((resolve, reject) => {
   let sql = `UPDATE tb_user SET 
     license_id = ${connection.escape(data.license_id)},
-    user_prefix = ${connection.escape(data.user_prefix)},
     user_firstname = ${connection.escape(data.user_firstname)},
     user_lastname = ${connection.escape(data.user_lastname)},
     user_img = ${connection.escape(data.user_img)},
-    user_tel = ${connection.escape(data.user_tel)},
+    user_phone = ${connection.escape(data.user_phone)},
     user_email = ${connection.escape(data.user_email)},
     user_username = ${connection.escape(data.user_username)},
     user_address = ${connection.escape(data.user_address)},

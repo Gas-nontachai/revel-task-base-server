@@ -1,7 +1,6 @@
 const Task = function (task) { this.task = task.task }
 
 const {
-  InvoiceSupplierModel,
   NotifyModel,
   OnesignalPlayerModel,
 } = require('@/models')
@@ -13,10 +12,10 @@ async function getMyNoti(connection) {
 
   const menu_noti = {}
 
-  menu_noti['invoice-supplier'] = await InvoiceSupplierModel.getInvoiceSupplierBy(connection, {
-    count: true,
-    match: { invoice_supplier_status: { $nin: ['invalid', 'paid'] } },
-  })
+  // menu_noti['invoice-supplier'] = await InvoiceSupplierModel.getInvoiceSupplierBy(connection, {
+  //   count: true,
+  //   match: { invoice_supplier_status: { $nin: ['invalid', 'paid'] } },
+  // })
 
   return {
     notifys,

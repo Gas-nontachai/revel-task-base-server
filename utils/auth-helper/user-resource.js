@@ -2,9 +2,7 @@ const { useConnection } = require('@/utils/db-helper')
 const { licenseStore, userStore } = require('@/stores')
 
 const {
-  BranchModel,
   UserModel,
-  UserBranchModel,
 } = require('@/models')
 
 const initialUserResource = () => useConnection(async connection => {
@@ -16,27 +14,27 @@ const initialUserResource = () => useConnection(async connection => {
 })
 
 const refreshUserResource = async (connection, user_ids = []) => {
-  if (!user_ids.length) {
-    const { docs: users } = await UserModel.getUserBy(connection)
+  // if (!user_ids.length) {
+  //   const { docs: users } = await UserModel.getUserBy(connection)
 
-    user_ids = users.map(item => item.user_id)
-  }
+  //   user_ids = users.map(item => item.user_id)
+  // }
 
-  const { docs: branchs } = await BranchModel.getBranchBy(connection)
-  const { docs: user_branchs } = await UserBranchModel.getUserBranchBy(connection, {
-    match: { user_id: { $in: user_ids }, }
-  })
+  // const { docs: branchs } = await BranchModel.getBranchBy(connection)
+  // const { docs: user_branchs } = await UserBranchModel.getUserBranchBy(connection, {
+  //   match: { user_id: { $in: user_ids }, }
+  // })
 
-  for (const user_id of user_ids) {
-    const _user_branchs = user_branchs.filter(val => val.user_id === user_id)
-    const branch_ids = _user_branchs.map(item => item.branch_id)
-    const _branchs = branchs.filter(val => branch_ids.includes(val.branch_id))
+  // for (const user_id of user_ids) {
+  //   const _user_branchs = user_branchs.filter(val => val.user_id === user_id)
+  //   const branch_ids = _user_branchs.map(item => item.branch_id)
+  //   const _branchs = branchs.filter(val => branch_ids.includes(val.branch_id))
 
-    userStore.setUser(user_id, {
-      branch_ids,
-      company_ids: Array.from(new Set(_branchs.map(item => item.company_id))),
-    })
-  }
+  //   userStore.setUser(user_id, {
+  //     branch_ids,
+  //     company_ids: Array.from(new Set(_branchs.map(item => item.company_id))),
+  //   })
+  // }
 }
 
 const getUserHasAccessBy = async (connection, data) => {

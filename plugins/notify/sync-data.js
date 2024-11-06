@@ -20,7 +20,7 @@ const addInvoice = async (connection, data = []) => {
       return {
         notify_title: `มีรายการใหม่ ${invoice_supplier_origin_id}`,
         notify_detail: invoice_supplier_branch_name,
-        notify_url: `${process.env.TT_CLIENT_URL}/invoice-supplier/detail?id=${invoice_supplier_id}`,
+        notify_url: `${process.env.WEB_CLIENT_URL}/invoice-supplier/detail?id=${invoice_supplier_id}`,
       }
     }),
     target: {
@@ -48,7 +48,7 @@ const updateInvoice = async (connection, data = []) => {
       return {
         notify_title: `มีการอัปเดตใบ ${invoice_supplier_origin_id}`,
         notify_detail: `เมื่อ ${formatDate(new Date(), 'HH:mm dd/MM/yyyy')} - ${invoice_supplier_branch_name}`,
-        notify_url: `${process.env.TT_CLIENT_URL}/invoice-supplier/detail?id=${invoice_supplier_id}`,
+        notify_url: `${process.env.WEB_CLIENT_URL}/invoice-supplier/detail?id=${invoice_supplier_id}`,
         notify_lv: 'warning',
       }
     }),

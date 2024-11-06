@@ -62,11 +62,7 @@ const {
 initialRoleAccess()
 initialUserResource()
 
-require('@/cron-job')
-require('@/queue').registerWorker()
+// require('@/cron-job')
+// require('@/queue').registerWorker()
 require('@/socket/notify')(io)
 require('@/routes')(app)
-
-// setTimeout(() => {
-//   require('./utils/maintenance')
-// }, 2000)
