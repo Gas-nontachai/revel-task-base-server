@@ -8,4 +8,5 @@ module.exports = {
   OnesignalPlayerModel: require('./onesignal-player.model'),
   PermissionModel: require('./permission.model'),
   UserModel: require('./user.model'),
+  ProjectModel: require('./project.model'),
 }

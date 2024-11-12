@@ -8,4 +8,5 @@ module.exports = {
   OnesignalPlayerController: require('./onesignal-player.controller'),
   PermissionController: require('./permission.controller'),
   UserController: require('./user.controller'),
+  ProjectController: require('./project.controller'),
 }

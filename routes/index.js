@@ -16,4 +16,5 @@ module.exports = (app) => {
   app.use(`/onesignal-player`, require('./onesignal-player.route'))
   app.use(`/permission`, require("./permission.route"))
   app.use(`/user`, require("./user.route"))
+  app.use(`/project`, require("./project.route"))
 }
