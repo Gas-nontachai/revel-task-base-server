@@ -39,5 +39,9 @@ router.post(
   authJwt.protect(scope, ['delete']),
   ProjectController.deleteProjectBy
 )
-
+router.post(
+  "/getProjectTaskByID",
+  authJwt.protect(),
+  ProjectController.getProjectTaskByID
+)
 module.exports = router
