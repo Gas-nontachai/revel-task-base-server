@@ -74,11 +74,12 @@ Task.getTaskByID = (connection, data = {}) => new Promise((resolve, reject) => {
       return reject(new Error(`Database query failed: ${err.message}`));
     }
     if (!res.length) {
-      // return resolve({ message: "No task found for the specified task." });
+      return resolve([]); // สามารถคืนค่าผลลัพธ์เป็น array ว่างถ้าไม่พบข้อมูล
     }
-    resolve(res[0]);
+    resolve(res); // ส่งคืนผลลัพธ์ทั้งหมด
   });
 });
+
 
 Task.updateTaskBy = (connection, data = {}) => new Promise((resolve, reject) => {
   let sql = `UPDATE tb_task SET 
