@@ -3,41 +3,36 @@ const router = require('express').Router()
 
 const { authJwt } = require("@/middlewares");
 
-const { ProjectController } = require("@/controllers");
+const { TaskController } = require("@/controllers");
 
-const scope = 'project'
+const scope = 'task'
 
 router.post(
-  "/generateProjectID",
+  "/generateTaskID",
   authJwt.protect(),
-  ProjectController.generateProjectID
+  TaskController.generateTaskID
 )
 router.post(
-  "/getProjectBy",
+  "/getTaskByID",
   authJwt.protect(),
-  ProjectController.getProjectBy
+  TaskController.getTaskByID
 )
 router.post(
-  "/getProjectByID",
-  authJwt.protect(),
-  ProjectController.getProjectByID
-)
-router.post(
-  "/updateProjectBy",
+  "/updateTaskBy",
   authJwt.protect(scope, ['edit']),
   fileupload({ createParentPath: true, }),
-  ProjectController.updateProjectBy
+  TaskController.updateTaskBy
 )
 router.post(
-  "/insertProject",
+  "/insertTask",
   authJwt.protect(scope, ['add']),
   fileupload({ createParentPath: true, }),
-  ProjectController.insertProject
+  TaskController.insertTask
 )
 router.post(
-  "/deleteProjectBy",
+  "/deleteTaskBy",
   authJwt.protect(scope, ['delete']),
-  ProjectController.deleteProjectBy
+  TaskController.deleteTaskBy
 )
 
 module.exports = router

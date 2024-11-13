@@ -60,8 +60,14 @@ FROM
 })
 
 Task.getProjectByID = (connection, data = {}) => new Promise((resolve, reject) => {
-  let sql = `SELECT *
-    FROM tb_project AS tb
+  let sql = `SELECT 
+    project_id, 
+    project_name, 
+    project_detail, 
+    DATE_FORMAT(project_start_date, '%Y-%m-%d') AS project_start_date, 
+    DATE_FORMAT(project_end_date, '%Y-%m-%d') AS project_end_date
+FROM 
+    tb_project AS tb
     WHERE project_id = ${connection.escape(data.project_id)}
     `
   connection.query(sql, function (err, res) {
@@ -126,31 +132,4 @@ Task.deleteProjectBy = (connection, data = {}) => new Promise((resolve, reject) 
 
   connection.query(sql, function (err, res) { err ? reject(new Error(err.message)) : resolve(res) })
 })
-
-
-Task.getProjectTaskByID = (connection, data = {}) => new Promise((resolve, reject) => {
-  let sql = `SELECT project_task_date, project_task_module, project_task_name, 
-                    CONCAT(tb_u.user_firstname, ' ', tb_u.user_lastname) AS task_request_by, 
-                    CONCAT(tb_u.user_firstname, ' ', tb_u.user_lastname) AS project_team,
-                    project_start_date, project_end_date, project_task_status, project_task_progress
-            FROM 
-                tb_project AS tb 
-            JOIN tb_project_task AS tb_t ON tb.project_id = tb_t.project_id
-            JOIN tb_project_team AS tb_pjt ON tb_pjt.project_id = tb.project_id
-            JOIN tb_user AS tb_u ON tb_pjt.user_id = tb_u.user_id
-            WHERE tb.project_id = ${connection.escape(data.project_id)}`;
-
-  connection.query(sql, function (err, res) {
-    if (err) {
-      return reject(new Error(`Database query failed: ${err.message}`));
-    }
-    if (!res.length) {
-      // return resolve({ message: "No task found for the specified project." });
-    }
-    resolve(res[0]);
-  });
-});
-
-
-
 module.exports = Task

@@ -10,7 +10,6 @@ const { ProjectModel } = require("@/models")
 Task.generateProjectID = (connection) => ProjectModel.generateProjectID(connection)
 Task.getProjectBy = (connection, data) => ProjectModel.getProjectBy(connection, data)
 Task.getProjectByID = (connection, data) => ProjectModel.getProjectByID(connection, data)
-Task.getProjectTaskByID = (connection, data) => ProjectModel.getProjectTaskByID(connection, data)
 
 Task.insertProject = async (connection, data, files) => {
   const project = JSON.parse(data.project)

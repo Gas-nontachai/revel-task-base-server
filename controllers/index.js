@@ -9,4 +9,5 @@ module.exports = {
   PermissionController: require('./permission.controller'),
   UserController: require('./user.controller'),
   ProjectController: require('./project.controller'),
+  TaskController: require('./task.controller'),
 }

@@ -17,4 +17,5 @@ module.exports = (app) => {
   app.use(`/permission`, require("./permission.route"))
   app.use(`/user`, require("./user.route"))
   app.use(`/project`, require("./project.route"))
+  app.use(`/task`, require("./task.route"))
 }

@@ -9,4 +9,5 @@ module.exports = {
   PermissionModel: require('./permission.model'),
   UserModel: require('./user.model'),
   ProjectModel: require('./project.model'),
+  TaskModel: require('./task.model'),
 }
